@@ -7,7 +7,7 @@ const checkAuth = require("../middleware/checkAuth");
 const resetAuth = require("../middleware/resetAuth");
 const jwt = require("jsonwebtoken");
 
-router.post("/Register", (req, res, next) => {
+router.post("/Register", (req, res) => {
   UserModel.find({ email: req.body.email })
     .exec()
     .then((user) => {
@@ -54,7 +54,7 @@ router.post("/Register", (req, res, next) => {
     });
 });
 
-router.get("/list", checkAuth, (req, res, next) => {
+router.get("/list", checkAuth, (req, res) => {
   UserModel.find()
     .then((result) => {
       res.status(200).json({
